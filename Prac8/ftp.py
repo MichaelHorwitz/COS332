@@ -104,7 +104,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as ftpSocket:
     ftp.connectToServer()
     #ftp.getFile('test.txt')
     # repeat every 5 seconds
-    ftp.appendToLog("HELLO")
+    file2 = 'test.txt'
+    with open(file2, 'r') as file:
+        file2Str = file.read()
+        #create a md5 hash of fileStr2
+        file2Hash = hashlib.md5(bytes(file2Str, "UTF-8")).hexdigest()
+    print(file2Hash)
     while True:
         print(ftp.checkDiffFiles('test.txt', 'test.txt'))
         import time
